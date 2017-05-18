@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using NUnit.Framework;
 
 namespace algorithm
@@ -31,8 +32,45 @@ namespace algorithm
             Assert.AreEqual("33", 1 + 2 + "3");
         }
 
+        string _1_1_3(int i, int j, int k) {
+            if (i == j && j == k) {
+                return "equal";
+            } else {
+                return "not equal";
+            }
+        }
+
         [Test]
         public void _03() {
+            Assert.AreEqual("equal", _1_1_3(1, 1, 1));
+            Assert.AreEqual("not equal", _1_1_3(1, 2, 1));
+            Assert.AreEqual("not equal", _1_1_3(1, 1, 2));
+            Assert.AreEqual("not equal", _1_1_3(2, 1, 1));
+        }
+
+        [Test]
+        public void _04() {
+            int a = 1, b = 2, c;
+            // a
+            if (a > b)
+                c = 0;
+            // b
+            if (a > b) {
+                c = 0;
+            }
+        }
+
+        bool _1_1_5(double x, double y) {
+            return x > 0 && x < 1 && y > 0 && y < 1;
+        }
+
+        [Test]
+        public void _05() {
+            Assert.AreEqual(true, _1_1_5(0.5, 0.5));
+            Assert.AreEqual(false, _1_1_5(1.1, 0.5));
+            Assert.AreEqual(false, _1_1_5(-1.1, 0.5));
+            Assert.AreEqual(false, _1_1_5(0.5, 1.5));
+            Assert.AreEqual(false, _1_1_5(0.5, -0.5));
         }
     }
 }

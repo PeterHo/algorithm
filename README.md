@@ -1,3 +1,3 @@
 # algorithm
 
-Exercises of <Algorithms 4th ed>
+Exercises of <Algorithms 4th>
