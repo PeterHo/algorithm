@@ -111,5 +111,43 @@ namespace algorithm
             }
             Console.WriteLine(sum);
         }
+
+        [Test]
+        public void _08() {
+            Assert.AreEqual('b', 'b');
+            // ascii of b add ascii of c = 98 + 99 = 197
+            Assert.AreEqual(197, 'b' + 'c');
+            // ascii of a add 4 = 97 + 4 = 101 => char = e
+            Assert.AreEqual('e', (char) ('a' + 4));
+        }
+
+        string _1_1_9(int N) {
+            if (N <= 0) {
+                return "wrong";
+            }
+            string s = "";
+            for (int i = N; i > 0; i /= 2) {
+                s = (i % 2) + s;
+            }
+            return s;
+        }
+
+        [Test]
+        public void _09() {
+            Assert.AreEqual("wrong", _1_1_9(-1));
+            Assert.AreEqual("wrong", _1_1_9(0));
+            Assert.AreEqual("111", _1_1_9(7));
+            Assert.AreEqual("101101", _1_1_9(45));
+            Assert.AreEqual("1110110000000", _1_1_9(7552));
+        }
+
+        [Test]
+        public void _10() {
+            int[] a = new int[10];
+            for (int i = 0; i < 10; i++) {
+                a[i] = i * i;
+            }
+            Assert.AreEqual(81, a[9]);
+        }
     }
 }
