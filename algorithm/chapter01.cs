@@ -149,5 +149,92 @@ namespace algorithm
             }
             Assert.AreEqual(81, a[9]);
         }
+
+        [Test]
+        public void _11() {
+            bool[,] a = {
+                {true, false, true, false, false},
+                {false, false, true, true, false},
+                {false, false, false, false, true},
+                {true, true, false, false, true},
+                {true, false, false, false, true},
+            };
+            for (int i = 0; i < a.GetLength(0); i++) {
+                for (int j = 0; j < a.GetLength(1); j++) {
+                    if (a[i, j]) {
+                        Console.Write("*");
+                    } else {
+                        Console.Write(" ");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+
+        [Test]
+        public void _12() {
+            // 0 1 2 3 4 5 6 7 8 9
+            int[] a = new int[10];
+            for (int i = 0; i < 10; i++)
+                a[i] = 9 - i;
+            for (int i = 0; i < 10; i++)
+                a[i] = a[a[i]];
+            for (int i = 0; i < 10; i++)
+                Console.WriteLine(i);
+        }
+
+        int[,] _1_1_13(int[,] a) {
+            int[,] b = new int[a.GetLength(1), a.GetLength(0)];
+            for (int i = 0; i < a.GetLength(0); i++) {
+                for (int j = 0; j < a.GetLength(1); j++) {
+                    b[j, i] = a[i, j];
+                }
+            }
+            return b;
+        }
+
+        [Test]
+        public void _13() {
+            int M = 3;
+            int N = 5;
+            int[,] a = new int[M, N];
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < N; j++) {
+                    a[i, j] = i * M + N;
+                }
+            }
+            int[,] b = _1_1_13(a);
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < N; j++) {
+                    Assert.AreEqual(b[j, i], a[i, j]);
+                }
+            }
+        }
+
+        int exp(int n, int m) {
+            int r = 1;
+            for (int i = 0; i < m; i++) {
+                r *= n;
+            }
+            return r;
+        }
+
+        int lg(int N) {
+            for (int i = 0; i < N / 2; i++) {
+                if (exp(2, i) > N) {
+                    return i - 1;
+                }
+            }
+
+            return 0;
+        }
+
+        [Test]
+        public void _14() {
+            Assert.AreEqual(0, lg(1));
+            Assert.AreEqual(6, lg(100));
+            Assert.AreEqual(9, lg(1000));
+            Assert.AreEqual(10, lg(1024));
+        }
     }
 }
