@@ -1,3 +1,3 @@
 # algorithms
 
-Exercises of <Algorithms 4th> in C#
+Exercises of <Algorithms 4th> in Java
