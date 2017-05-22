@@ -2,6 +2,7 @@ package chapter_01;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -240,5 +241,33 @@ public class _1_1 {
         assertEquals(6, lg(100));
         assertEquals(9, lg(1000));
         assertEquals(10, lg(1024));
+    }
+
+    int[] histogram(int[] a, int M) {
+        int[] r = new int[M];
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] < M) {
+                r[a[i]]++;
+            }
+        }
+        return r;
+    }
+
+    @Test
+    public void _15() {
+        assertArrayEquals(new int[]{0, 2, 1, 1}, histogram(new int[]{1, 2, 3, 1}, 4));
+        assertArrayEquals(new int[]{0, 2, 1}, histogram(new int[]{1, 2, 3, 1}, 3));
+        assertArrayEquals(new int[]{0, 2, 1, 1, 0}, histogram(new int[]{1, 2, 3, 1}, 5));
+    }
+
+    String exR1(int n) {
+        if (n <= 0)
+            return "";
+        return exR1(n - 3) + n + exR1(n - 2) + n;
+    }
+
+    @Test
+    public void _16() {
+        assertEquals("311361142246", exR1(6));
     }
 }
