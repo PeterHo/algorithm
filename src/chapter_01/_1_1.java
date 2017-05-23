@@ -270,4 +270,38 @@ public class _1_1 {
     public void _16() {
         assertEquals("311361142246", exR1(6));
     }
+
+    @Test
+    public void _17() {
+        // The base case will never be reached. A call to exR2(3) will result in calls to
+        // exR2(0), exR2(-3), exR3(-6), and so forth until a StackOverflowError occurs.
+    }
+
+    int _1_1_18_mul(int a, int b) {
+        if (b == 0) {
+            return 0;
+        }
+        if (b % 2 == 0) {
+            return _1_1_18_mul(a + a, b / 2);
+        }
+        return _1_1_18_mul(a + a, b / 2) + a;
+    }
+
+    int _1_1_18_exp(int a, int b) {
+        if (b == 0) {
+            return 1;
+        }
+        if (b % 2 == 0) {
+            return _1_1_18_exp(a * a, b / 2);
+        }
+        return _1_1_18_exp(a * a, b / 2) * a;
+    }
+
+    @Test
+    public void _18() {
+        assertEquals(50, _1_1_18_mul(2, 25));
+        assertEquals(33, _1_1_18_mul(3, 11));
+        assertEquals(33554432, _1_1_18_exp(2, 25));
+        assertEquals(177147, _1_1_18_exp(3, 11));
+    }
 }
