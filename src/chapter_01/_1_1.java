@@ -2,9 +2,46 @@ package chapter_01;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+class _1_1_19_Fibonacci {
+    public static long F(int N) {
+        if (N == 0) return 0;
+        if (N == 1) return 1;
+        return F(N - 1) + F(N - 2);
+    }
+
+    public static void main(String[] args) {
+        for (int N = 0; N < 100; N++)
+            System.out.println(N + " " + F(N));
+    }
+}
+
+class _1_1_19_Fibonacci2 {
+    public static long F(int N) {
+        if (N == 0) return 0;
+        if (N == 1) return 1;
+        return F(N - 1) + F(N - 2);
+    }
+
+    public static void main(String[] args) {
+        int maxN = 100;
+        BigDecimal[] r = new BigDecimal[maxN];
+        r[0] = new BigDecimal(0);
+        r[1] = new BigDecimal(1);
+        for (int N = 0; N < 100; N++) {
+            if (N > 1) {
+                r[N] = r[N - 1].add(r[N - 2]);
+            }
+            System.out.println(N + " " + r[N]);
+        }
+    }
+}
 
 public class _1_1 {
 
@@ -217,7 +254,7 @@ public class _1_1 {
         }
     }
 
-    int exp(int n, int m) {
+    int _1_1_14_exp(int n, int m) {
         int r = 1;
         for (int i = 0; i < m; i++) {
             r *= n;
@@ -225,9 +262,9 @@ public class _1_1 {
         return r;
     }
 
-    int lg(int N) {
+    int _1_1_14_lg(int N) {
         for (int i = 0; i < N / 2; i++) {
-            if (exp(2, i) > N) {
+            if (_1_1_14_exp(2, i) > N) {
                 return i - 1;
             }
         }
@@ -237,10 +274,10 @@ public class _1_1 {
 
     @Test
     public void _14() {
-        assertEquals(0, lg(1));
-        assertEquals(6, lg(100));
-        assertEquals(9, lg(1000));
-        assertEquals(10, lg(1024));
+        assertEquals(0, _1_1_14_lg(1));
+        assertEquals(6, _1_1_14_lg(100));
+        assertEquals(9, _1_1_14_lg(1000));
+        assertEquals(10, _1_1_14_lg(1024));
     }
 
     int[] histogram(int[] a, int M) {
@@ -303,5 +340,36 @@ public class _1_1 {
         assertEquals(33, _1_1_18_mul(3, 11));
         assertEquals(33554432, _1_1_18_exp(2, 25));
         assertEquals(177147, _1_1_18_exp(3, 11));
+    }
+
+    @Test
+    public void _19() {
+        _1_1_19_Fibonacci2.main(null);
+    }
+
+    double _1_1_20_ln(int N) {
+        if (N == 1) {
+            return 0;
+        }
+        return _1_1_20_ln(N - 1) + Math.log(N);
+    }
+
+    long _1_1_20_factorial(long number) {
+        if (number <= 1) {
+            return 1;
+        } else {
+            return number * _1_1_20_factorial(number - 1);
+        }
+    }
+
+    @Test
+    public void _20() {
+        assertEquals(Math.log(_1_1_20_factorial(5)), _1_1_20_ln(5), delta);
+        assertEquals(Math.log(_1_1_20_factorial(10)), _1_1_20_ln(10), delta);
+    }
+
+    @Test
+    public void _21() {
+        
     }
 }
