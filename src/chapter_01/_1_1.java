@@ -368,8 +368,66 @@ public class _1_1 {
         assertEquals(Math.log(_1_1_20_factorial(10)), _1_1_20_ln(10), delta);
     }
 
+    void _1_1_21(String name, int a, int b) {
+        System.out.format("%s %d %d %.3f\n", name, a, b, (float) (a) / b);
+    }
+
     @Test
     public void _21() {
-        
+        _1_1_21("abc", 2, 3);
+        _1_1_21("bcd", 4, 2);
+    }
+
+
+    int _1_1_22_rank(int key, int[] a, int lo, int hi, int lv) {
+        // Index of key in a[], if present, is not smaller than lo and not larger than hi.
+        for (int i = 0; i < lv; i++) {
+            System.out.print("    ");
+        }
+        System.out.format("%d %d\n", lo, hi);
+
+        if (lo > hi) return -1;
+        int mid = lo + (hi - lo) / 2;
+        if (key < a[mid]) return _1_1_22_rank(key, a, lo, mid - 1, lv + 1);
+        else if (key > a[mid]) return _1_1_22_rank(key, a, mid + 1, hi, lv + 1);
+        else return mid;
+    }
+
+    @Test
+    public void _22() {
+        int[] a = {1, 2, 4, 6, 9, 20, 30, 35, 55, 80};
+        assertEquals(1, _1_1_22_rank(2, a, 0, a.length - 1, 0));
+        assertEquals(2, _1_1_22_rank(4, a, 0, a.length - 1, 0));
+        assertEquals(8, _1_1_22_rank(55, a, 0, a.length - 1, 0));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
